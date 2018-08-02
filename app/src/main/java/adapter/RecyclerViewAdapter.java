@@ -40,8 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-        holder.mTextView.setText(name.get(position));
-        holder.mImageView.setImageResource(image.get(position));
+       holder.setView(name.get(position),image.get(position));
     }
 
     @Override
@@ -52,7 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     class RecyclerViewHolder extends RecyclerView.ViewHolder{
         TextView mTextView;
         ImageView mImageView;
-        RecyclerViewHolder(@NonNull View itemView) {
+        RecyclerViewHolder(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.image_hero);
             mTextView  = itemView.findViewById(R.id.text_name);
@@ -62,6 +61,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     if (listener != null) listener.OnItemClick(name,getLayoutPosition());
                 }
             });
+        }
+        private void setView(String name,Integer image){
+            mTextView.setText(name);
+            mImageView.setImageResource(image);
         }
     }
 }
